@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block content %}
+<p>This is the vulnerable Flask demo target for SAST and DAST testing.</p>
+<ul>
+    <li>/login - SQL injection demo</li>
+    <li>/search - reflected XSS demo</li>
+    <li>/comment and /comments - unsafe template output demo</li>
+    <li>/read - path traversal demo</li>
+    <li>/exec - eval demo</li>
+</ul>
+{% endblock %}

@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Comments</h2>
+{% for item in comments %}
+<div style="margin-bottom: 16px;">
+    <strong>{{ item.author }}</strong>
+    <div>{{ item.content|safe }}</div>
+</div>
+{% endfor %}
+{% endblock %}

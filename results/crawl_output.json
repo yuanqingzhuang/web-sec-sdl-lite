@@ -1,0 +1,168 @@
+{
+  "start_url": "http://127.0.0.1:5000",
+  "pages": [
+    {
+      "url": "http://127.0.0.1:5000",
+      "links": [
+        "http://127.0.0.1:5000/",
+        "http://127.0.0.1:5000/login",
+        "http://127.0.0.1:5000/search?q=hello",
+        "http://127.0.0.1:5000/comment",
+        "http://127.0.0.1:5000/comments",
+        "http://127.0.0.1:5000/read",
+        "http://127.0.0.1:5000/exec"
+      ],
+      "forms": []
+    },
+    {
+      "url": "http://127.0.0.1:5000/",
+      "links": [
+        "http://127.0.0.1:5000/",
+        "http://127.0.0.1:5000/login",
+        "http://127.0.0.1:5000/search?q=hello",
+        "http://127.0.0.1:5000/comment",
+        "http://127.0.0.1:5000/comments",
+        "http://127.0.0.1:5000/read",
+        "http://127.0.0.1:5000/exec"
+      ],
+      "forms": []
+    },
+    {
+      "url": "http://127.0.0.1:5000/login",
+      "links": [
+        "http://127.0.0.1:5000/",
+        "http://127.0.0.1:5000/login",
+        "http://127.0.0.1:5000/search?q=hello",
+        "http://127.0.0.1:5000/comment",
+        "http://127.0.0.1:5000/comments",
+        "http://127.0.0.1:5000/read",
+        "http://127.0.0.1:5000/exec"
+      ],
+      "forms": [
+        {
+          "method": "POST",
+          "action": "http://127.0.0.1:5000/login",
+          "inputs": [
+            {
+              "name": "username",
+              "type": "text"
+            },
+            {
+              "name": "password",
+              "type": "text"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "url": "http://127.0.0.1:5000/search?q=hello",
+      "links": [
+        "http://127.0.0.1:5000/",
+        "http://127.0.0.1:5000/login",
+        "http://127.0.0.1:5000/search?q=hello",
+        "http://127.0.0.1:5000/comment",
+        "http://127.0.0.1:5000/comments",
+        "http://127.0.0.1:5000/read",
+        "http://127.0.0.1:5000/exec"
+      ],
+      "forms": [
+        {
+          "method": "GET",
+          "action": "http://127.0.0.1:5000/search?q=hello",
+          "inputs": [
+            {
+              "name": "q",
+              "type": "text"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "url": "http://127.0.0.1:5000/comment",
+      "links": [
+        "http://127.0.0.1:5000/",
+        "http://127.0.0.1:5000/login",
+        "http://127.0.0.1:5000/search?q=hello",
+        "http://127.0.0.1:5000/comment",
+        "http://127.0.0.1:5000/comments",
+        "http://127.0.0.1:5000/read",
+        "http://127.0.0.1:5000/exec"
+      ],
+      "forms": [
+        {
+          "method": "POST",
+          "action": "http://127.0.0.1:5000/comment",
+          "inputs": [
+            {
+              "name": "author",
+              "type": "text"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "url": "http://127.0.0.1:5000/comments",
+      "links": [
+        "http://127.0.0.1:5000/",
+        "http://127.0.0.1:5000/login",
+        "http://127.0.0.1:5000/search?q=hello",
+        "http://127.0.0.1:5000/comment",
+        "http://127.0.0.1:5000/comments",
+        "http://127.0.0.1:5000/read",
+        "http://127.0.0.1:5000/exec"
+      ],
+      "forms": []
+    },
+    {
+      "url": "http://127.0.0.1:5000/read",
+      "links": [
+        "http://127.0.0.1:5000/",
+        "http://127.0.0.1:5000/login",
+        "http://127.0.0.1:5000/search?q=hello",
+        "http://127.0.0.1:5000/comment",
+        "http://127.0.0.1:5000/comments",
+        "http://127.0.0.1:5000/read",
+        "http://127.0.0.1:5000/exec"
+      ],
+      "forms": [
+        {
+          "method": "GET",
+          "action": "http://127.0.0.1:5000/read",
+          "inputs": [
+            {
+              "name": "name",
+              "type": "text"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "url": "http://127.0.0.1:5000/exec",
+      "links": [
+        "http://127.0.0.1:5000/",
+        "http://127.0.0.1:5000/login",
+        "http://127.0.0.1:5000/search?q=hello",
+        "http://127.0.0.1:5000/comment",
+        "http://127.0.0.1:5000/comments",
+        "http://127.0.0.1:5000/read",
+        "http://127.0.0.1:5000/exec"
+      ],
+      "forms": [
+        {
+          "method": "POST",
+          "action": "http://127.0.0.1:5000/exec",
+          "inputs": [
+            {
+              "name": "code",
+              "type": "text"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

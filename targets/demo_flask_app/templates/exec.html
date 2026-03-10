@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Eval Demo</h2>
+<form method="post">
+    <input name="code" value="{{ code }}" placeholder="e.g. 1+1">
+    <button type="submit">Run</button>
+</form>
+
+<p>{{ result }}</p>
+{% endblock %}

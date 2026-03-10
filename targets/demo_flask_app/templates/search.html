@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Search</h2>
+<form method="get">
+    <input name="q" placeholder="search keyword">
+    <button type="submit">Search</button>
+</form>
+
+<p>Search result for:</p>
+<div>{{ q|safe }}</div>
+{% endblock %}

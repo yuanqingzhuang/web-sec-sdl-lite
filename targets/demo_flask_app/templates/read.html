@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Read File</h2>
+<form method="get">
+    <input name="name" value="{{ name }}">
+    <button type="submit">Read</button>
+</form>
+
+<pre>{{ content }}</pre>
+{% endblock %}

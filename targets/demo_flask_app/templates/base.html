@@ -1,0 +1,21 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Demo Flask App</title>
+</head>
+<body>
+    <h1>Demo Flask Vulnerable App</h1>
+    <nav>
+        <a href="/">Home</a> |
+        <a href="/login">Login</a> |
+        <a href="/search?q=hello">Search</a> |
+        <a href="/comment">Comment</a> |
+        <a href="/comments">Comments</a> |
+        <a href="/read">Read File</a> |
+        <a href="/exec">Exec Demo</a>
+    </nav>
+    <hr>
+    {% block content %}{% endblock %}
+</body>
+</html>
