@@ -1,47 +1,15 @@
 {
-  "start_url": "http://127.0.0.1:5000",
+  "start_url": "http://192.168.23.132/dvwa/index.php",
   "pages": [
     {
-      "url": "http://127.0.0.1:5000",
+      "url": "http://192.168.23.132/dvwa/index.php",
       "links": [
-        "http://127.0.0.1:5000/",
-        "http://127.0.0.1:5000/login",
-        "http://127.0.0.1:5000/search?q=hello",
-        "http://127.0.0.1:5000/comment",
-        "http://127.0.0.1:5000/comments",
-        "http://127.0.0.1:5000/read",
-        "http://127.0.0.1:5000/exec"
-      ],
-      "forms": []
-    },
-    {
-      "url": "http://127.0.0.1:5000/",
-      "links": [
-        "http://127.0.0.1:5000/",
-        "http://127.0.0.1:5000/login",
-        "http://127.0.0.1:5000/search?q=hello",
-        "http://127.0.0.1:5000/comment",
-        "http://127.0.0.1:5000/comments",
-        "http://127.0.0.1:5000/read",
-        "http://127.0.0.1:5000/exec"
-      ],
-      "forms": []
-    },
-    {
-      "url": "http://127.0.0.1:5000/login",
-      "links": [
-        "http://127.0.0.1:5000/",
-        "http://127.0.0.1:5000/login",
-        "http://127.0.0.1:5000/search?q=hello",
-        "http://127.0.0.1:5000/comment",
-        "http://127.0.0.1:5000/comments",
-        "http://127.0.0.1:5000/read",
-        "http://127.0.0.1:5000/exec"
+        "https://github.com/digininja/DVWA/"
       ],
       "forms": [
         {
           "method": "POST",
-          "action": "http://127.0.0.1:5000/login",
+          "action": "http://192.168.23.132/dvwa/login.php",
           "inputs": [
             {
               "name": "username",
@@ -49,116 +17,15 @@
             },
             {
               "name": "password",
-              "type": "text"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "url": "http://127.0.0.1:5000/search?q=hello",
-      "links": [
-        "http://127.0.0.1:5000/",
-        "http://127.0.0.1:5000/login",
-        "http://127.0.0.1:5000/search?q=hello",
-        "http://127.0.0.1:5000/comment",
-        "http://127.0.0.1:5000/comments",
-        "http://127.0.0.1:5000/read",
-        "http://127.0.0.1:5000/exec"
-      ],
-      "forms": [
-        {
-          "method": "GET",
-          "action": "http://127.0.0.1:5000/search?q=hello",
-          "inputs": [
+              "type": "password"
+            },
             {
-              "name": "q",
-              "type": "text"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "url": "http://127.0.0.1:5000/comment",
-      "links": [
-        "http://127.0.0.1:5000/",
-        "http://127.0.0.1:5000/login",
-        "http://127.0.0.1:5000/search?q=hello",
-        "http://127.0.0.1:5000/comment",
-        "http://127.0.0.1:5000/comments",
-        "http://127.0.0.1:5000/read",
-        "http://127.0.0.1:5000/exec"
-      ],
-      "forms": [
-        {
-          "method": "POST",
-          "action": "http://127.0.0.1:5000/comment",
-          "inputs": [
+              "name": "Login",
+              "type": "submit"
+            },
             {
-              "name": "author",
-              "type": "text"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "url": "http://127.0.0.1:5000/comments",
-      "links": [
-        "http://127.0.0.1:5000/",
-        "http://127.0.0.1:5000/login",
-        "http://127.0.0.1:5000/search?q=hello",
-        "http://127.0.0.1:5000/comment",
-        "http://127.0.0.1:5000/comments",
-        "http://127.0.0.1:5000/read",
-        "http://127.0.0.1:5000/exec"
-      ],
-      "forms": []
-    },
-    {
-      "url": "http://127.0.0.1:5000/read",
-      "links": [
-        "http://127.0.0.1:5000/",
-        "http://127.0.0.1:5000/login",
-        "http://127.0.0.1:5000/search?q=hello",
-        "http://127.0.0.1:5000/comment",
-        "http://127.0.0.1:5000/comments",
-        "http://127.0.0.1:5000/read",
-        "http://127.0.0.1:5000/exec"
-      ],
-      "forms": [
-        {
-          "method": "GET",
-          "action": "http://127.0.0.1:5000/read",
-          "inputs": [
-            {
-              "name": "name",
-              "type": "text"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "url": "http://127.0.0.1:5000/exec",
-      "links": [
-        "http://127.0.0.1:5000/",
-        "http://127.0.0.1:5000/login",
-        "http://127.0.0.1:5000/search?q=hello",
-        "http://127.0.0.1:5000/comment",
-        "http://127.0.0.1:5000/comments",
-        "http://127.0.0.1:5000/read",
-        "http://127.0.0.1:5000/exec"
-      ],
-      "forms": [
-        {
-          "method": "POST",
-          "action": "http://127.0.0.1:5000/exec",
-          "inputs": [
-            {
-              "name": "code",
-              "type": "text"
+              "name": "user_token",
+              "type": "hidden"
             }
           ]
         }

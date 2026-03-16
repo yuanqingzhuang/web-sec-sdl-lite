@@ -1,0 +1,30 @@
+[
+  {
+    "url": "http://192.168.23.132/dvwa/login.php",
+    "method": "POST",
+    "param": "username",
+    "location": "form",
+    "source_page": "http://192.168.23.132/dvwa/index.php"
+  },
+  {
+    "url": "http://192.168.23.132/dvwa/login.php",
+    "method": "POST",
+    "param": "password",
+    "location": "form",
+    "source_page": "http://192.168.23.132/dvwa/index.php"
+  },
+  {
+    "url": "http://192.168.23.132/dvwa/login.php",
+    "method": "POST",
+    "param": "Login",
+    "location": "form",
+    "source_page": "http://192.168.23.132/dvwa/index.php"
+  },
+  {
+    "url": "http://192.168.23.132/dvwa/login.php",
+    "method": "POST",
+    "param": "user_token",
+    "location": "form",
+    "source_page": "http://192.168.23.132/dvwa/index.php"
+  }
+]
