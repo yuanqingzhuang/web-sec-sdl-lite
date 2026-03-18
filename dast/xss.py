@@ -1,4 +1,3 @@
-# dast/xss.py
 import html
 from typing import Any
 from urllib.parse import urlencode, urlparse, parse_qsl, urlunparse
@@ -84,17 +83,15 @@ def is_payload_in_html_context(body: str, payload: str) -> bool:
 
 
 class XSSScanner:
-    def __init__(self, timeout: int = 5):
+    def __init__(self, timeout: int = 5, session: requests.Session | None = None):
         self.timeout = timeout
-        self.session = requests.Session()
+        self.session = session or requests.Session()
 
     def scan(self, target: dict[str, Any]) -> list[dict[str, Any]]:
         findings = []
 
-        method = target.get("method", "GET").upper()
         url = target.get("url", "")
         param = target.get("param", "")
-        location = target.get("location", "")
 
         if not url or not param:
             return findings
@@ -105,15 +102,8 @@ class XSSScanner:
             except requests.RequestException:
                 continue
 
-            if not response:
-                continue
-
             body = response.text
-
-            # Day 9: 原样反射判断
             raw_reflected = payload in body
-
-            # Day 10: 基础降误报
             escaped_reflected = html.escape(payload) in body
             html_context = is_payload_in_html_context(body, payload)
 
@@ -132,7 +122,6 @@ class XSSScanner:
                 })
                 break
 
-            # 只做提示，不判真
             if raw_reflected and not html_context:
                 snippet, index = get_evidence_snippet(body, payload)
 
@@ -149,7 +138,6 @@ class XSSScanner:
                 break
 
             if escaped_reflected:
-                # 有反射但已被转义，不报漏洞
                 continue
 
         return findings
@@ -158,7 +146,6 @@ class XSSScanner:
         method = target.get("method", "GET").upper()
         url = target.get("url", "")
         param = target.get("param", "")
-        location = target.get("location", "")
 
         if method == "GET":
             test_url = build_url_with_param(url, param, payload)
@@ -168,5 +155,4 @@ class XSSScanner:
             data = build_post_data(target, param, payload)
             return self.session.post(url, data=data, timeout=self.timeout)
 
-        # 其他方法暂不处理
         raise requests.RequestException(f"Unsupported method: {method}")

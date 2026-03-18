@@ -1,4 +1,3 @@
-# dast/traversal.py
 from typing import Any
 from urllib.parse import urlencode, urlparse, parse_qsl, urlunparse
 
@@ -91,14 +90,13 @@ def get_evidence_snippet(text: str, keyword: str, radius: int = 80) -> tuple[str
 
 
 class TraversalScanner:
-    def __init__(self, timeout: int = 5):
+    def __init__(self, timeout: int = 5, session: requests.Session | None = None):
         self.timeout = timeout
-        self.session = requests.Session()
+        self.session = session or requests.Session()
 
     def scan(self, target: dict[str, Any]) -> list[dict[str, Any]]:
         findings = []
 
-        method = target.get("method", "GET").upper()
         url = target.get("url", "")
         param = target.get("param", "")
 
@@ -158,12 +156,10 @@ class TraversalScanner:
         body: str,
         baseline_text: str | None,
     ) -> dict[str, Any] | None:
-        # 1) 先排除明显失败
         error_hit = find_first_pattern(body, ERROR_PATTERNS)
         if error_hit:
             return None
 
-        # 2) 系统文件特征
         system_hit = find_first_pattern(body, SYSTEM_FILE_PATTERNS)
         if system_hit:
             snippet, index = get_evidence_snippet(body, system_hit)
@@ -178,7 +174,6 @@ class TraversalScanner:
                 "suggestion": "restrict file access to a safe base directory and validate filenames with an allowlist",
             }
 
-        # 3) 应用源码特征（适合你当前 demo）
         source_hit = find_first_pattern(body, SOURCE_CODE_PATTERNS)
         if source_hit:
             snippet, index = get_evidence_snippet(body, source_hit)
@@ -193,7 +188,6 @@ class TraversalScanner:
                 "suggestion": "restrict file access to a safe base directory and validate filenames with an allowlist",
             }
 
-        # 4) 与基线差异很大，且 payload 包含 ../ 或 ..\\，也作为最小证明
         if baseline_text is not None and self._looks_like_successful_escape(payload, body, baseline_text):
             return {
                 "type": "path_traversal",

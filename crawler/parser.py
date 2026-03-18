@@ -40,7 +40,8 @@ def extract_forms(html: str, base_url: str) -> list[dict]:
         for input_tag in form.find_all("input"):
             inputs.append({
                 "name": input_tag.get("name"),
-                "type": input_tag.get("type", "text")
+                "type": input_tag.get("type", "text"),
+                "value": input_tag.get("value", "")
             })
 
         forms.append({

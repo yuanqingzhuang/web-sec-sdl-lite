@@ -1,4 +1,3 @@
-# crawler/engine.py
 import json
 from collections import deque
 from urllib.parse import urlparse
@@ -9,10 +8,17 @@ from .parser import extract_links, extract_forms
 
 
 class BasicCrawler:
-    def __init__(self, start_url: str, max_pages: int = 10, timeout: int = 5):
+    def __init__(
+        self,
+        start_url: str,
+        max_pages: int = 1000,
+        timeout: int = 5,
+        session: requests.Session | None = None,
+    ):
         self.start_url = start_url
         self.max_pages = max_pages
         self.timeout = timeout
+        self.session = session or requests.Session()
         self.visited = set()
         self.results = []
 
@@ -23,7 +29,7 @@ class BasicCrawler:
 
     def fetch_page(self, url: str) -> str | None:
         try:
-            response = requests.get(url, timeout=self.timeout)
+            response = self.session.get(url, timeout=self.timeout)
             response.raise_for_status()
 
             content_type = response.headers.get("Content-Type", "")

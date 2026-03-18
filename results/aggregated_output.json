@@ -1,0 +1,419 @@
+{
+  "summary": {
+    "total_raw_findings": 9,
+    "total_unique_findings": 9,
+    "by_type": {
+      "code_execution": 1,
+      "path_traversal": 1,
+      "sqli": 3,
+      "xss": 4
+    },
+    "by_severity": {
+      "high": 5,
+      "medium": 4
+    },
+    "by_source": {
+      "dast": 4,
+      "sast": 5
+    }
+  },
+  "findings": [
+    {
+      "source": "sast",
+      "rule_id": "PY002",
+      "type": "code_execution",
+      "file": "targets\\demo_flask_app\\app.py",
+      "line": 114,
+      "param": "eval",
+      "payload": "",
+      "evidence": "Dangerous dynamic execution detected via eval().",
+      "severity": "high",
+      "verified": true,
+      "suggestion": "Avoid eval/exec on untrusted input. Replace with safe parsing or explicit allowlist logic.",
+      "code": "result = str(eval(code))",
+      "location": "targets\\demo_flask_app\\app.py:114"
+    },
+    {
+      "source": "sast",
+      "rule_id": "PY004",
+      "type": "path_traversal",
+      "file": "targets\\demo_flask_app\\app.py",
+      "line": 98,
+      "param": "file_path",
+      "payload": "",
+      "evidence": "open() uses variable 'file_path' that was built from user-controlled path segments near line 95.",
+      "severity": "high",
+      "verified": true,
+      "suggestion": "Restrict file access to a fixed base directory and validate file names with an allowlist.",
+      "code": "with open(file_path, \"r\", encoding=\"utf-8\") as f:",
+      "location": "targets\\demo_flask_app\\app.py:98"
+    },
+    {
+      "type": "sqli",
+      "url": "http://192.168.23.132/dvwa/vulnerabilities/brute/",
+      "param": "username",
+      "payload": "1'",
+      "evidence": "SQL error keyword detected only after payload: you have an error in your sql syntax",
+      "severity": "high",
+      "verified": true,
+      "suggestion": "use parameterized queries / prepared statements instead of string concatenation",
+      "source": "dast",
+      "rule_id": "",
+      "location": "http://192.168.23.132/dvwa/vulnerabilities/brute/"
+    },
+    {
+      "type": "sqli",
+      "url": "http://192.168.23.132/dvwa/vulnerabilities/sqli/",
+      "param": "id",
+      "payload": "1'",
+      "evidence": "SQL error keyword detected only after payload: you have an error in your sql syntax",
+      "severity": "high",
+      "verified": true,
+      "suggestion": "use parameterized queries / prepared statements instead of string concatenation",
+      "source": "dast",
+      "rule_id": "",
+      "location": "http://192.168.23.132/dvwa/vulnerabilities/sqli/"
+    },
+    {
+      "source": "sast",
+      "rule_id": "PY001",
+      "type": "sqli",
+      "file": "targets\\demo_flask_app\\app.py",
+      "line": 48,
+      "param": "query",
+      "payload": "",
+      "evidence": "execute() uses variable 'query' that was built from dynamic SQL near line 43.",
+      "severity": "high",
+      "verified": true,
+      "suggestion": "Use parameterized queries or prepared statements instead of building SQL strings dynamically.",
+      "code": "cur.execute(query)",
+      "location": "targets\\demo_flask_app\\app.py:48"
+    },
+    {
+      "type": "xss",
+      "url": "http://192.168.23.132/dvwa/vulnerabilities/csp/",
+      "param": "include",
+      "payload": "<script>alert(1)</script>",
+      "evidence": "payload reflected in HTML response at offset 2653: s=\"vulnerable_code_area\">\n\t<script src='<script>alert(1)</script>'></script>\n\n<form name=\"csp\" method=\"PO",
+      "severity": "medium",
+      "verified": true,
+      "suggestion": "escape untrusted output before rendering HTML; use template autoescaping and input validation",
+      "source": "dast",
+      "rule_id": "",
+      "location": "http://192.168.23.132/dvwa/vulnerabilities/csp/"
+    },
+    {
+      "type": "xss",
+      "url": "http://192.168.23.132/dvwa/vulnerabilities/xss_r/",
+      "param": "name",
+      "payload": "<script>alert(1)</script>",
+      "evidence": "payload reflected in HTML response at offset 2834: it\">\r\n\t\t\t</p>\n\r\n\t\t</form>\r\n\t\t<pre>Hello <script>alert(1)</script></pre>\r\n\t</div>\r\n\r\n\t<h2>More Information",
+      "severity": "medium",
+      "verified": true,
+      "suggestion": "escape untrusted output before rendering HTML; use template autoescaping and input validation",
+      "source": "dast",
+      "rule_id": "",
+      "location": "http://192.168.23.132/dvwa/vulnerabilities/xss_r/"
+    },
+    {
+      "source": "sast",
+      "rule_id": "PY003",
+      "type": "xss",
+      "file": "targets\\demo_flask_app\\templates\\comments.html",
+      "line": 7,
+      "param": "safe",
+      "payload": "",
+      "evidence": "Template uses |safe and may render untrusted content without escaping.",
+      "severity": "medium",
+      "verified": true,
+      "suggestion": "Keep template autoescaping enabled and avoid marking untrusted content as safe.",
+      "code": "<div>{{ item.content|safe }}</div>",
+      "location": "targets\\demo_flask_app\\templates\\comments.html:7"
+    },
+    {
+      "source": "sast",
+      "rule_id": "PY003",
+      "type": "xss",
+      "file": "targets\\demo_flask_app\\templates\\search.html",
+      "line": 10,
+      "param": "safe",
+      "payload": "",
+      "evidence": "Template uses |safe and may render untrusted content without escaping.",
+      "severity": "medium",
+      "verified": true,
+      "suggestion": "Keep template autoescaping enabled and avoid marking untrusted content as safe.",
+      "code": "<div>{{ q|safe }}</div>",
+      "location": "targets\\demo_flask_app\\templates\\search.html:10"
+    }
+  ],
+  "grouped_by_type": {
+    "code_execution": [
+      {
+        "source": "sast",
+        "rule_id": "PY002",
+        "type": "code_execution",
+        "file": "targets\\demo_flask_app\\app.py",
+        "line": 114,
+        "param": "eval",
+        "payload": "",
+        "evidence": "Dangerous dynamic execution detected via eval().",
+        "severity": "high",
+        "verified": true,
+        "suggestion": "Avoid eval/exec on untrusted input. Replace with safe parsing or explicit allowlist logic.",
+        "code": "result = str(eval(code))",
+        "location": "targets\\demo_flask_app\\app.py:114"
+      }
+    ],
+    "path_traversal": [
+      {
+        "source": "sast",
+        "rule_id": "PY004",
+        "type": "path_traversal",
+        "file": "targets\\demo_flask_app\\app.py",
+        "line": 98,
+        "param": "file_path",
+        "payload": "",
+        "evidence": "open() uses variable 'file_path' that was built from user-controlled path segments near line 95.",
+        "severity": "high",
+        "verified": true,
+        "suggestion": "Restrict file access to a fixed base directory and validate file names with an allowlist.",
+        "code": "with open(file_path, \"r\", encoding=\"utf-8\") as f:",
+        "location": "targets\\demo_flask_app\\app.py:98"
+      }
+    ],
+    "sqli": [
+      {
+        "type": "sqli",
+        "url": "http://192.168.23.132/dvwa/vulnerabilities/brute/",
+        "param": "username",
+        "payload": "1'",
+        "evidence": "SQL error keyword detected only after payload: you have an error in your sql syntax",
+        "severity": "high",
+        "verified": true,
+        "suggestion": "use parameterized queries / prepared statements instead of string concatenation",
+        "source": "dast",
+        "rule_id": "",
+        "location": "http://192.168.23.132/dvwa/vulnerabilities/brute/"
+      },
+      {
+        "type": "sqli",
+        "url": "http://192.168.23.132/dvwa/vulnerabilities/sqli/",
+        "param": "id",
+        "payload": "1'",
+        "evidence": "SQL error keyword detected only after payload: you have an error in your sql syntax",
+        "severity": "high",
+        "verified": true,
+        "suggestion": "use parameterized queries / prepared statements instead of string concatenation",
+        "source": "dast",
+        "rule_id": "",
+        "location": "http://192.168.23.132/dvwa/vulnerabilities/sqli/"
+      },
+      {
+        "source": "sast",
+        "rule_id": "PY001",
+        "type": "sqli",
+        "file": "targets\\demo_flask_app\\app.py",
+        "line": 48,
+        "param": "query",
+        "payload": "",
+        "evidence": "execute() uses variable 'query' that was built from dynamic SQL near line 43.",
+        "severity": "high",
+        "verified": true,
+        "suggestion": "Use parameterized queries or prepared statements instead of building SQL strings dynamically.",
+        "code": "cur.execute(query)",
+        "location": "targets\\demo_flask_app\\app.py:48"
+      }
+    ],
+    "xss": [
+      {
+        "type": "xss",
+        "url": "http://192.168.23.132/dvwa/vulnerabilities/csp/",
+        "param": "include",
+        "payload": "<script>alert(1)</script>",
+        "evidence": "payload reflected in HTML response at offset 2653: s=\"vulnerable_code_area\">\n\t<script src='<script>alert(1)</script>'></script>\n\n<form name=\"csp\" method=\"PO",
+        "severity": "medium",
+        "verified": true,
+        "suggestion": "escape untrusted output before rendering HTML; use template autoescaping and input validation",
+        "source": "dast",
+        "rule_id": "",
+        "location": "http://192.168.23.132/dvwa/vulnerabilities/csp/"
+      },
+      {
+        "type": "xss",
+        "url": "http://192.168.23.132/dvwa/vulnerabilities/xss_r/",
+        "param": "name",
+        "payload": "<script>alert(1)</script>",
+        "evidence": "payload reflected in HTML response at offset 2834: it\">\r\n\t\t\t</p>\n\r\n\t\t</form>\r\n\t\t<pre>Hello <script>alert(1)</script></pre>\r\n\t</div>\r\n\r\n\t<h2>More Information",
+        "severity": "medium",
+        "verified": true,
+        "suggestion": "escape untrusted output before rendering HTML; use template autoescaping and input validation",
+        "source": "dast",
+        "rule_id": "",
+        "location": "http://192.168.23.132/dvwa/vulnerabilities/xss_r/"
+      },
+      {
+        "source": "sast",
+        "rule_id": "PY003",
+        "type": "xss",
+        "file": "targets\\demo_flask_app\\templates\\comments.html",
+        "line": 7,
+        "param": "safe",
+        "payload": "",
+        "evidence": "Template uses |safe and may render untrusted content without escaping.",
+        "severity": "medium",
+        "verified": true,
+        "suggestion": "Keep template autoescaping enabled and avoid marking untrusted content as safe.",
+        "code": "<div>{{ item.content|safe }}</div>",
+        "location": "targets\\demo_flask_app\\templates\\comments.html:7"
+      },
+      {
+        "source": "sast",
+        "rule_id": "PY003",
+        "type": "xss",
+        "file": "targets\\demo_flask_app\\templates\\search.html",
+        "line": 10,
+        "param": "safe",
+        "payload": "",
+        "evidence": "Template uses |safe and may render untrusted content without escaping.",
+        "severity": "medium",
+        "verified": true,
+        "suggestion": "Keep template autoescaping enabled and avoid marking untrusted content as safe.",
+        "code": "<div>{{ q|safe }}</div>",
+        "location": "targets\\demo_flask_app\\templates\\search.html:10"
+      }
+    ]
+  },
+  "grouped_by_severity": {
+    "high": [
+      {
+        "source": "sast",
+        "rule_id": "PY002",
+        "type": "code_execution",
+        "file": "targets\\demo_flask_app\\app.py",
+        "line": 114,
+        "param": "eval",
+        "payload": "",
+        "evidence": "Dangerous dynamic execution detected via eval().",
+        "severity": "high",
+        "verified": true,
+        "suggestion": "Avoid eval/exec on untrusted input. Replace with safe parsing or explicit allowlist logic.",
+        "code": "result = str(eval(code))",
+        "location": "targets\\demo_flask_app\\app.py:114"
+      },
+      {
+        "source": "sast",
+        "rule_id": "PY004",
+        "type": "path_traversal",
+        "file": "targets\\demo_flask_app\\app.py",
+        "line": 98,
+        "param": "file_path",
+        "payload": "",
+        "evidence": "open() uses variable 'file_path' that was built from user-controlled path segments near line 95.",
+        "severity": "high",
+        "verified": true,
+        "suggestion": "Restrict file access to a fixed base directory and validate file names with an allowlist.",
+        "code": "with open(file_path, \"r\", encoding=\"utf-8\") as f:",
+        "location": "targets\\demo_flask_app\\app.py:98"
+      },
+      {
+        "type": "sqli",
+        "url": "http://192.168.23.132/dvwa/vulnerabilities/brute/",
+        "param": "username",
+        "payload": "1'",
+        "evidence": "SQL error keyword detected only after payload: you have an error in your sql syntax",
+        "severity": "high",
+        "verified": true,
+        "suggestion": "use parameterized queries / prepared statements instead of string concatenation",
+        "source": "dast",
+        "rule_id": "",
+        "location": "http://192.168.23.132/dvwa/vulnerabilities/brute/"
+      },
+      {
+        "type": "sqli",
+        "url": "http://192.168.23.132/dvwa/vulnerabilities/sqli/",
+        "param": "id",
+        "payload": "1'",
+        "evidence": "SQL error keyword detected only after payload: you have an error in your sql syntax",
+        "severity": "high",
+        "verified": true,
+        "suggestion": "use parameterized queries / prepared statements instead of string concatenation",
+        "source": "dast",
+        "rule_id": "",
+        "location": "http://192.168.23.132/dvwa/vulnerabilities/sqli/"
+      },
+      {
+        "source": "sast",
+        "rule_id": "PY001",
+        "type": "sqli",
+        "file": "targets\\demo_flask_app\\app.py",
+        "line": 48,
+        "param": "query",
+        "payload": "",
+        "evidence": "execute() uses variable 'query' that was built from dynamic SQL near line 43.",
+        "severity": "high",
+        "verified": true,
+        "suggestion": "Use parameterized queries or prepared statements instead of building SQL strings dynamically.",
+        "code": "cur.execute(query)",
+        "location": "targets\\demo_flask_app\\app.py:48"
+      }
+    ],
+    "medium": [
+      {
+        "type": "xss",
+        "url": "http://192.168.23.132/dvwa/vulnerabilities/csp/",
+        "param": "include",
+        "payload": "<script>alert(1)</script>",
+        "evidence": "payload reflected in HTML response at offset 2653: s=\"vulnerable_code_area\">\n\t<script src='<script>alert(1)</script>'></script>\n\n<form name=\"csp\" method=\"PO",
+        "severity": "medium",
+        "verified": true,
+        "suggestion": "escape untrusted output before rendering HTML; use template autoescaping and input validation",
+        "source": "dast",
+        "rule_id": "",
+        "location": "http://192.168.23.132/dvwa/vulnerabilities/csp/"
+      },
+      {
+        "type": "xss",
+        "url": "http://192.168.23.132/dvwa/vulnerabilities/xss_r/",
+        "param": "name",
+        "payload": "<script>alert(1)</script>",
+        "evidence": "payload reflected in HTML response at offset 2834: it\">\r\n\t\t\t</p>\n\r\n\t\t</form>\r\n\t\t<pre>Hello <script>alert(1)</script></pre>\r\n\t</div>\r\n\r\n\t<h2>More Information",
+        "severity": "medium",
+        "verified": true,
+        "suggestion": "escape untrusted output before rendering HTML; use template autoescaping and input validation",
+        "source": "dast",
+        "rule_id": "",
+        "location": "http://192.168.23.132/dvwa/vulnerabilities/xss_r/"
+      },
+      {
+        "source": "sast",
+        "rule_id": "PY003",
+        "type": "xss",
+        "file": "targets\\demo_flask_app\\templates\\comments.html",
+        "line": 7,
+        "param": "safe",
+        "payload": "",
+        "evidence": "Template uses |safe and may render untrusted content without escaping.",
+        "severity": "medium",
+        "verified": true,
+        "suggestion": "Keep template autoescaping enabled and avoid marking untrusted content as safe.",
+        "code": "<div>{{ item.content|safe }}</div>",
+        "location": "targets\\demo_flask_app\\templates\\comments.html:7"
+      },
+      {
+        "source": "sast",
+        "rule_id": "PY003",
+        "type": "xss",
+        "file": "targets\\demo_flask_app\\templates\\search.html",
+        "line": 10,
+        "param": "safe",
+        "payload": "",
+        "evidence": "Template uses |safe and may render untrusted content without escaping.",
+        "severity": "medium",
+        "verified": true,
+        "suggestion": "Keep template autoescaping enabled and avoid marking untrusted content as safe.",
+        "code": "<div>{{ q|safe }}</div>",
+        "location": "targets\\demo_flask_app\\templates\\search.html:10"
+      }
+    ]
+  }
+}

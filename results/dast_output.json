@@ -1,1 +1,42 @@
-[]
+[
+  {
+    "type": "sqli",
+    "url": "http://192.168.23.132/dvwa/vulnerabilities/brute/",
+    "param": "username",
+    "payload": "1'",
+    "evidence": "SQL error keyword detected only after payload: you have an error in your sql syntax",
+    "severity": "high",
+    "verified": true,
+    "suggestion": "use parameterized queries / prepared statements instead of string concatenation"
+  },
+  {
+    "type": "sqli",
+    "url": "http://192.168.23.132/dvwa/vulnerabilities/sqli/",
+    "param": "id",
+    "payload": "1'",
+    "evidence": "SQL error keyword detected only after payload: you have an error in your sql syntax",
+    "severity": "high",
+    "verified": true,
+    "suggestion": "use parameterized queries / prepared statements instead of string concatenation"
+  },
+  {
+    "type": "xss",
+    "url": "http://192.168.23.132/dvwa/vulnerabilities/xss_r/",
+    "param": "name",
+    "payload": "<script>alert(1)</script>",
+    "evidence": "payload reflected in HTML response at offset 2834: it\">\r\n\t\t\t</p>\n\r\n\t\t</form>\r\n\t\t<pre>Hello <script>alert(1)</script></pre>\r\n\t</div>\r\n\r\n\t<h2>More Information",
+    "severity": "medium",
+    "verified": true,
+    "suggestion": "escape untrusted output before rendering HTML; use template autoescaping and input validation"
+  },
+  {
+    "type": "xss",
+    "url": "http://192.168.23.132/dvwa/vulnerabilities/csp/",
+    "param": "include",
+    "payload": "<script>alert(1)</script>",
+    "evidence": "payload reflected in HTML response at offset 2653: s=\"vulnerable_code_area\">\n\t<script src='<script>alert(1)</script>'></script>\n\n<form name=\"csp\" method=\"PO",
+    "severity": "medium",
+    "verified": true,
+    "suggestion": "escape untrusted output before rendering HTML; use template autoescaping and input validation"
+  }
+]

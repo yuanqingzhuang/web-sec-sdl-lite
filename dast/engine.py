@@ -1,27 +1,28 @@
-# dast/engine.py
 import json
 from pathlib import Path
 from typing import List, Dict, Any
+
+import requests
+
 from .xss import XSSScanner
 from .sqli import SQLiScanner
 from .traversal import TraversalScanner
+
 
 class DASTEngine:
     """
     Core DAST scanning engine
     """
 
-    def __init__(self, targets: List[Dict[str, Any]]):
+    def __init__(self, targets: List[Dict[str, Any]], session: requests.Session | None = None):
         self.targets = targets
         self.results: List[Dict[str, Any]] = []
-        self.xss_scanner = XSSScanner()
-        self.sqli_scanner = SQLiScanner()
-        self.traversal_scanner = TraversalScanner()
+        self.session = session or requests.Session()
+        self.xss_scanner = XSSScanner(session=self.session)
+        self.sqli_scanner = SQLiScanner(session=self.session)
+        self.traversal_scanner = TraversalScanner(session=self.session)
 
     def run(self) -> List[Dict[str, Any]]:
-        """
-        Run all scanners
-        """
         print(f"[+] Starting DAST scan: {len(self.targets)} targets")
 
         for target in self.targets:
@@ -31,23 +32,19 @@ class DASTEngine:
         return self.results
 
     def scan_target(self, target: Dict[str, Any]) -> None:
-        """
-        Scan a single parameter target
-        """
         url = target["url"]
         param = target["param"]
 
         print(f"[SCAN] {url} -> {param}")
 
-        # Placeholder for scanners
         xss_results = self.xss_scanner.scan(target)
         sqli_results = self.sqli_scanner.scan(target)
         traversal_results = self.traversal_scanner.scan(target)
-        # Future modules: XSS / SQLi / Traversal
 
         self.results.extend(xss_results)
         self.results.extend(sqli_results)
         self.results.extend(traversal_results)
+
     @staticmethod
     def build_finding(
         vuln_type: str,
@@ -59,10 +56,6 @@ class DASTEngine:
         verified: bool,
         suggestion: str
     ) -> Dict[str, Any]:
-        """
-        Unified vulnerability structure
-        """
-
         return {
             "type": vuln_type,
             "url": url,

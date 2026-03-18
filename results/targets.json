@@ -1,30 +1,369 @@
 [
   {
-    "url": "http://192.168.23.132/dvwa/login.php",
-    "method": "POST",
+    "url": "http://192.168.23.132/dvwa/vulnerabilities/brute/",
+    "method": "GET",
     "param": "username",
     "location": "form",
-    "source_page": "http://192.168.23.132/dvwa/index.php"
+    "source_page": "http://192.168.23.132/dvwa/vulnerabilities/brute/",
+    "form_inputs": [
+      {
+        "name": "username",
+        "type": "text",
+        "value": ""
+      },
+      {
+        "name": "password",
+        "type": "password",
+        "value": ""
+      },
+      {
+        "name": "Login",
+        "type": "submit",
+        "value": "Login"
+      }
+    ]
   },
   {
-    "url": "http://192.168.23.132/dvwa/login.php",
-    "method": "POST",
+    "url": "http://192.168.23.132/dvwa/vulnerabilities/brute/",
+    "method": "GET",
     "param": "password",
     "location": "form",
-    "source_page": "http://192.168.23.132/dvwa/index.php"
+    "source_page": "http://192.168.23.132/dvwa/vulnerabilities/brute/",
+    "form_inputs": [
+      {
+        "name": "username",
+        "type": "text",
+        "value": ""
+      },
+      {
+        "name": "password",
+        "type": "password",
+        "value": ""
+      },
+      {
+        "name": "Login",
+        "type": "submit",
+        "value": "Login"
+      }
+    ]
   },
   {
-    "url": "http://192.168.23.132/dvwa/login.php",
+    "url": "http://192.168.23.132/dvwa/vulnerabilities/exec/",
     "method": "POST",
-    "param": "Login",
+    "param": "ip",
     "location": "form",
-    "source_page": "http://192.168.23.132/dvwa/index.php"
+    "source_page": "http://192.168.23.132/dvwa/vulnerabilities/exec/",
+    "form_inputs": [
+      {
+        "name": "ip",
+        "type": "text",
+        "value": ""
+      },
+      {
+        "name": "Submit",
+        "type": "submit",
+        "value": "Submit"
+      }
+    ]
   },
   {
-    "url": "http://192.168.23.132/dvwa/login.php",
-    "method": "POST",
-    "param": "user_token",
+    "url": "http://192.168.23.132/dvwa/vulnerabilities/csrf/",
+    "method": "GET",
+    "param": "password_new",
     "location": "form",
-    "source_page": "http://192.168.23.132/dvwa/index.php"
+    "source_page": "http://192.168.23.132/dvwa/vulnerabilities/csrf/",
+    "form_inputs": [
+      {
+        "name": "password_new",
+        "type": "password",
+        "value": ""
+      },
+      {
+        "name": "password_conf",
+        "type": "password",
+        "value": ""
+      },
+      {
+        "name": "Change",
+        "type": "submit",
+        "value": "Change"
+      }
+    ]
+  },
+  {
+    "url": "http://192.168.23.132/dvwa/vulnerabilities/csrf/",
+    "method": "GET",
+    "param": "password_conf",
+    "location": "form",
+    "source_page": "http://192.168.23.132/dvwa/vulnerabilities/csrf/",
+    "form_inputs": [
+      {
+        "name": "password_new",
+        "type": "password",
+        "value": ""
+      },
+      {
+        "name": "password_conf",
+        "type": "password",
+        "value": ""
+      },
+      {
+        "name": "Change",
+        "type": "submit",
+        "value": "Change"
+      }
+    ]
+  },
+  {
+    "url": "http://192.168.23.132/dvwa/vulnerabilities/fi/?page=include.php",
+    "method": "GET",
+    "param": "page",
+    "location": "query",
+    "source_page": "http://192.168.23.132/dvwa/vulnerabilities/fi/?page=include.php"
+  },
+  {
+    "url": "http://192.168.23.132/dvwa/vulnerabilities/captcha/",
+    "method": "POST",
+    "param": "password_new",
+    "location": "form",
+    "source_page": "http://192.168.23.132/dvwa/vulnerabilities/captcha/",
+    "form_inputs": [
+      {
+        "name": "step",
+        "type": "hidden",
+        "value": "1"
+      },
+      {
+        "name": "password_new",
+        "type": "password",
+        "value": ""
+      },
+      {
+        "name": "password_conf",
+        "type": "password",
+        "value": ""
+      },
+      {
+        "name": "Change",
+        "type": "submit",
+        "value": "Change"
+      }
+    ]
+  },
+  {
+    "url": "http://192.168.23.132/dvwa/vulnerabilities/captcha/",
+    "method": "POST",
+    "param": "password_conf",
+    "location": "form",
+    "source_page": "http://192.168.23.132/dvwa/vulnerabilities/captcha/",
+    "form_inputs": [
+      {
+        "name": "step",
+        "type": "hidden",
+        "value": "1"
+      },
+      {
+        "name": "password_new",
+        "type": "password",
+        "value": ""
+      },
+      {
+        "name": "password_conf",
+        "type": "password",
+        "value": ""
+      },
+      {
+        "name": "Change",
+        "type": "submit",
+        "value": "Change"
+      }
+    ]
+  },
+  {
+    "url": "http://192.168.23.132/dvwa/vulnerabilities/sqli/",
+    "method": "GET",
+    "param": "id",
+    "location": "form",
+    "source_page": "http://192.168.23.132/dvwa/vulnerabilities/sqli/",
+    "form_inputs": [
+      {
+        "name": "id",
+        "type": "text",
+        "value": ""
+      },
+      {
+        "name": "Submit",
+        "type": "submit",
+        "value": "Submit"
+      }
+    ]
+  },
+  {
+    "url": "http://192.168.23.132/dvwa/vulnerabilities/sqli_blind/",
+    "method": "GET",
+    "param": "id",
+    "location": "form",
+    "source_page": "http://192.168.23.132/dvwa/vulnerabilities/sqli_blind/",
+    "form_inputs": [
+      {
+        "name": "id",
+        "type": "text",
+        "value": ""
+      },
+      {
+        "name": "Submit",
+        "type": "submit",
+        "value": "Submit"
+      }
+    ]
+  },
+  {
+    "url": "http://192.168.23.132/dvwa/vulnerabilities/xss_r/",
+    "method": "GET",
+    "param": "name",
+    "location": "form",
+    "source_page": "http://192.168.23.132/dvwa/vulnerabilities/xss_r/",
+    "form_inputs": [
+      {
+        "name": "name",
+        "type": "text",
+        "value": ""
+      },
+      {
+        "name": null,
+        "type": "submit",
+        "value": "Submit"
+      }
+    ]
+  },
+  {
+    "url": "http://192.168.23.132/dvwa/vulnerabilities/xss_s/",
+    "method": "POST",
+    "param": "txtName",
+    "location": "form",
+    "source_page": "http://192.168.23.132/dvwa/vulnerabilities/xss_s/",
+    "form_inputs": [
+      {
+        "name": "txtName",
+        "type": "text",
+        "value": ""
+      },
+      {
+        "name": "btnSign",
+        "type": "submit",
+        "value": "Sign Guestbook"
+      },
+      {
+        "name": "btnClear",
+        "type": "submit",
+        "value": "Clear Guestbook"
+      }
+    ]
+  },
+  {
+    "url": "http://192.168.23.132/dvwa/vulnerabilities/csp/",
+    "method": "POST",
+    "param": "include",
+    "location": "form",
+    "source_page": "http://192.168.23.132/dvwa/vulnerabilities/csp/",
+    "form_inputs": [
+      {
+        "name": "include",
+        "type": "text",
+        "value": ""
+      },
+      {
+        "name": null,
+        "type": "submit",
+        "value": "Include"
+      }
+    ]
+  },
+  {
+    "url": "http://192.168.23.132/dvwa/vulnerabilities/javascript/",
+    "method": "POST",
+    "param": "phrase",
+    "location": "form",
+    "source_page": "http://192.168.23.132/dvwa/vulnerabilities/javascript/",
+    "form_inputs": [
+      {
+        "name": "token",
+        "type": "hidden",
+        "value": ""
+      },
+      {
+        "name": "phrase",
+        "type": "text",
+        "value": "ChangeMe"
+      },
+      {
+        "name": "send",
+        "type": "submit",
+        "value": "Submit"
+      }
+    ]
+  },
+  {
+    "url": "http://192.168.23.132/dvwa/instructions.php?doc=readme",
+    "method": "GET",
+    "param": "doc",
+    "location": "query",
+    "source_page": "http://192.168.23.132/dvwa/instructions.php?doc=readme"
+  },
+  {
+    "url": "http://192.168.23.132/dvwa/instructions.php?doc=PDF",
+    "method": "GET",
+    "param": "doc",
+    "location": "query",
+    "source_page": "http://192.168.23.132/dvwa/instructions.php?doc=PDF"
+  },
+  {
+    "url": "http://192.168.23.132/dvwa/instructions.php?doc=changelog",
+    "method": "GET",
+    "param": "doc",
+    "location": "query",
+    "source_page": "http://192.168.23.132/dvwa/instructions.php?doc=changelog"
+  },
+  {
+    "url": "http://192.168.23.132/dvwa/instructions.php?doc=copying",
+    "method": "GET",
+    "param": "doc",
+    "location": "query",
+    "source_page": "http://192.168.23.132/dvwa/instructions.php?doc=copying"
+  },
+  {
+    "url": "http://192.168.23.132/dvwa/vulnerabilities/fi/?page=file1.php",
+    "method": "GET",
+    "param": "page",
+    "location": "query",
+    "source_page": "http://192.168.23.132/dvwa/vulnerabilities/fi/?page=file1.php"
+  },
+  {
+    "url": "http://192.168.23.132/dvwa/vulnerabilities/fi/?page=file2.php",
+    "method": "GET",
+    "param": "page",
+    "location": "query",
+    "source_page": "http://192.168.23.132/dvwa/vulnerabilities/fi/?page=file2.php"
+  },
+  {
+    "url": "http://192.168.23.132/dvwa/vulnerabilities/fi/?page=file3.php",
+    "method": "GET",
+    "param": "page",
+    "location": "query",
+    "source_page": "http://192.168.23.132/dvwa/vulnerabilities/fi/?page=file3.php"
+  },
+  {
+    "url": "http://192.168.23.132/dvwa/vulnerabilities/open_redirect/source/low.php?redirect=info.php?id=1",
+    "method": "GET",
+    "param": "redirect",
+    "location": "query",
+    "source_page": "http://192.168.23.132/dvwa/vulnerabilities/open_redirect/source/low.php?redirect=info.php?id=1"
+  },
+  {
+    "url": "http://192.168.23.132/dvwa/vulnerabilities/open_redirect/source/low.php?redirect=info.php?id=2",
+    "method": "GET",
+    "param": "redirect",
+    "location": "query",
+    "source_page": "http://192.168.23.132/dvwa/vulnerabilities/open_redirect/source/low.php?redirect=info.php?id=2"
   }
 ]
