@@ -78,7 +78,7 @@ def login_dvwa(
     if "login.php" in check.url.lower() or looks_like_login_page(check.text):
         raise RuntimeError("DVWA login failed: still redirected to login.php")
 
-    # 4. Try setting security level
+    # 4.Set security level
     try:
         sec_page = session.get(security_url, timeout=timeout, allow_redirects=True)
         sec_page.raise_for_status()
@@ -98,7 +98,7 @@ def login_dvwa(
         )
         sec_resp.raise_for_status()
     except Exception:
-        # 不让这里阻断主流程，登录成功更重要
+
         pass
 
     return session

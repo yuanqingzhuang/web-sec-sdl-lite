@@ -68,17 +68,14 @@ def build_form_request_data(
             data[name] = payload_value
             continue
 
-        # 保留 submit，这对 DVWA 很关键
         if field_type == "submit":
             data[name] = field_value or "Submit"
             continue
 
-        # hidden 也尽量保留
         if field_type == "hidden":
             data[name] = field_value
             continue
 
-        # file 不属于 SQLi 通用逻辑
         if field_type == "file":
             continue
 
